@@ -1,0 +1,13 @@
+@use "../index";
+
+.advice {
+  margin: 20vh auto;
+  max-width: 34rem;
+
+  @media screen and (min-width: index.$medium-screen) {
+    & {
+      max-width: none;
+      width: 45rem;
+    }
+  }
+}

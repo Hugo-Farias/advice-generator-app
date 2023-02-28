@@ -1,0 +1,64 @@
+@use "../index";
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  position: relative;
+  padding: 2.5rem;
+  text-align: center;
+  border-radius: 1rem;
+  box-shadow: 1rem 1rem 3rem 0.1rem rgba(0, 0, 0, 0.1);
+  background-color: #313a49;
+
+  & > h1 {
+    color: #53ffab;
+    text-transform: uppercase;
+    letter-spacing: 0.35rem;
+    font-size: 1.1rem;
+  }
+
+  & > h2 {
+    color: #cee2e9;
+    font-size: 2.4rem;
+
+    &:before {
+      content: open-quote;
+    }
+
+    &:after {
+      content: close-quote;
+    }
+  }
+
+  & > .divider {
+    @include flex-center;
+    margin: 3rem 0;
+    margin-inline: 0.35rem;
+    overflow: hidden;
+  }
+
+  & > .dice {
+    @include flex-center;
+    border: none;
+    transition: all ease-in-out 0.1s;
+    background-color: #53ffab;
+    border-radius: 50%;
+    padding: 1.5rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    &:hover {
+      box-shadow: 0 0 3rem #53ffab;
+    }
+
+    &:active {
+      box-shadow: none;
+      transform: translateX(-50%) scale(0.95);
+    }
+  }
+}
