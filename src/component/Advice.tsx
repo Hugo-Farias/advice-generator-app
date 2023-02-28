@@ -4,14 +4,6 @@ import { useState, useEffect } from "react";
 
 const API_URL = "https://api.adviceslip.com/advice";
 
-const DUMMY_DATA = {
-  slip: {
-    id: 204,
-    advice:
-      "The best nights out are when people around you are simply having fun.",
-  },
-};
-
 const Advice = function () {
   const [apiData, setApiData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -23,16 +15,13 @@ const Advice = function () {
     const res = await fetch(API_URL);
     const data = await res.json();
 
-    console.log("getData triggered");
-
     setApiData(data);
-    await setLoading(false);
+
+    setTimeout(() => setLoading(false), 2000);
   };
 
   useEffect(() => {
-    const data = getData();
-
-    console.log(data);
+    getData();
   }, []);
 
   return (
@@ -42,9 +31,11 @@ const Advice = function () {
           id={apiData.slip.id}
           advice={apiData.slip.advice}
           onClick={getData}
+          disabled={loading}
+          hideButton={false}
         />
       ) : (
-        <Card advice={"Loading..."} />
+        <Card advice={"Loading..."} disabled={loading} hideButton={true} />
       )}
     </div>
   );

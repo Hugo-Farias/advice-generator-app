@@ -1,5 +1,8 @@
 @use "../index";
 
+$button-color: #53ffab;
+$button-color-disabled: #3a3a3a;
+
 @mixin flex-center {
   display: flex;
   align-items: center;
@@ -15,7 +18,7 @@
   background-color: #313a49;
 
   & > h1 {
-    color: #53ffab;
+    color: $button-color;
     text-transform: uppercase;
     letter-spacing: 0.35rem;
     font-size: 1.1rem;
@@ -45,7 +48,7 @@
     @include flex-center;
     border: none;
     transition: all ease-in-out 0.1s;
-    background-color: #53ffab;
+    background-color: $button-color;
     border-radius: 50%;
     padding: 1.5rem;
     position: absolute;
@@ -53,12 +56,20 @@
     transform: translateX(-50%);
 
     &:hover {
-      box-shadow: 0 0 3rem #53ffab;
+      box-shadow: 0 0 3rem $button-color;
     }
 
     &:active {
       box-shadow: none;
       transform: translateX(-50%) scale(0.95);
+    }
+
+    &:disabled {
+      background-color: $button-color-disabled;
+      box-shadow: none;
+      &:active {
+        transform: translateX(-50%);
+      }
     }
   }
 }

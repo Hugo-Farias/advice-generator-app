@@ -4,9 +4,11 @@ import iconDice from "../assets/icon-dice.svg";
 import React from "react";
 
 interface props {
-  id: number;
+  id?: number;
   advice: string;
-  onClick: () => void;
+  onClick?: () => void;
+  disabled?: boolean;
+  hideButton: boolean;
 }
 
 const Card: React.FC<props> = function (props) {
@@ -17,13 +19,24 @@ const Card: React.FC<props> = function (props) {
   return (
     <div className="card">
       {props.id ? <h1>Advice #{props.id}</h1> : ""}
-      <h2>{props.advice}</h2>
-      <div className="divider">
-        <img src={divDesk} alt="divider" />
-      </div>
-      <button className="dice" onClick={clickHandler}>
-        <img src={iconDice} alt="roll button" />
-      </button>
+      {props.id ? <h2>{props.advice}</h2> : <h1>{props.advice}</h1>}
+      {!props.hideButton ? (
+        <>
+          <div className="divider">
+            <img src={divDesk} alt="divider" />
+          </div>
+
+          <button
+            className="dice"
+            onClick={clickHandler}
+            disabled={props.disabled}
+          >
+            <img src={iconDice} alt="roll button" />
+          </button>
+        </>
+      ) : (
+        ""
+      )}
     </div>
   );
 };
