@@ -23,7 +23,7 @@ const Advice = function () {
     const res = await fetch(API_URL);
     const data = await res.json();
 
-    setApiData(data);
+    setApiData(data.slip);
 
     setTimeout(() => setLoading(false), 2000);
   };
@@ -36,8 +36,8 @@ const Advice = function () {
     <div className="advice">
       {apiData ? (
         <Card
-          id={apiData}
-          advice={apiData}
+          id={apiData.id}
+          advice={apiData.advice}
           onClick={getData}
           disabled={loading}
           hideButton={false}
