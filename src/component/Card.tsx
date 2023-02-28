@@ -8,20 +8,19 @@ interface props {
   advice?: string;
   onClick?: () => void;
   disabled?: boolean;
-  hideButton: boolean;
 }
 
 const Card: React.FC<props> = function (props) {
   console.log(props);
   const clickHandler = function () {
-    props.onClick();
+    if (props.onClick) props.onClick();
   };
 
   return (
     <div className="card">
       {props.id ? <h1>Advice #{props.id}</h1> : ""}
       {props.id ? <h2>{props.advice}</h2> : <h1>Loading...</h1>}
-      {!props.hideButton ? (
+      {props.id ? (
         <>
           <div className="divider">
             <img src={divDesk} alt="divider" />

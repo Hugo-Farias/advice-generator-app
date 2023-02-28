@@ -13,8 +13,8 @@ const DUMMY_DATA = {
 };
 
 const Advice = function () {
-  const [apiData, setApiData] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [apiData, setApiData] = useState<any>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const getData = async function () {
     if (loading) return;
@@ -40,10 +40,9 @@ const Advice = function () {
           advice={apiData.advice}
           onClick={getData}
           disabled={loading}
-          hideButton={false}
         />
       ) : (
-        <Card disabled={loading} hideButton={true} />
+        <Card disabled={loading} />
       )}
     </div>
   );
