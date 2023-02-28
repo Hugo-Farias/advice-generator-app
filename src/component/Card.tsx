@@ -4,8 +4,12 @@ import iconDice from "../assets/icon-dice.svg";
 import React from "react";
 
 interface props {
-  id?: number;
-  advice: string;
+  advice?: {
+    slip: {
+      id: number;
+      advice: string;
+    };
+  };
   onClick?: () => void;
   disabled?: boolean;
   hideButton: boolean;
@@ -16,10 +20,25 @@ const Card: React.FC<props> = function (props) {
     props.onClick();
   };
 
+  console.log(props.advice.slip);
+
+  const contentJSX = props.advice ? (
+    <h1>Loading...</h1>
+  ) : (
+    props.advice?.slip.entries((v) => {
+      console.log(props.advice?.slip);
+      return (
+        <>
+          <h1>Advice #{v.id}</h1>
+          <h2>{v.advice}</h2>
+        </>
+      );
+    })
+  );
+
   return (
     <div className="card">
-      {props.id ? <h1>Advice #{props.id}</h1> : ""}
-      {props.id ? <h2>{props.advice}</h2> : <h1>{props.advice}</h1>}
+      {contentJSX}
       {!props.hideButton ? (
         <>
           <div className="divider">
